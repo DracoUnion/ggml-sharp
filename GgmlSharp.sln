@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{15B1CE7C-8DC1-42D9-938A-57D0B4BFEAFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GgmlSharp", "src\GgmlSharp\GgmlSharp.csproj", "{31D616CA-5AE1-4248-B214-F5E50A3EB033}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{4C11A4C8-535F-4D53-8CCE-6947E21EB2B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GgmlSharp.Tests", "tests\GgmlSharp.Tests\GgmlSharp.Tests.csproj", "{1556A6FB-DC32-4CFD-884C-3C125455E62B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{31D616CA-5AE1-4248-B214-F5E50A3EB033}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31D616CA-5AE1-4248-B214-F5E50A3EB033}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31D616CA-5AE1-4248-B214-F5E50A3EB033}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31D616CA-5AE1-4248-B214-F5E50A3EB033}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1556A6FB-DC32-4CFD-884C-3C125455E62B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1556A6FB-DC32-4CFD-884C-3C125455E62B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1556A6FB-DC32-4CFD-884C-3C125455E62B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1556A6FB-DC32-4CFD-884C-3C125455E62B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{31D616CA-5AE1-4248-B214-F5E50A3EB033} = {15B1CE7C-8DC1-42D9-938A-57D0B4BFEAFC}
+		{1556A6FB-DC32-4CFD-884C-3C125455E62B} = {4C11A4C8-535F-4D53-8CCE-6947E21EB2B9}
+	EndGlobalSection
+EndGlobal

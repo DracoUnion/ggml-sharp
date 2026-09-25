@@ -1,0 +1,12 @@
+D:\src\gglm-sharp\src\GgmlSharp\obj\Debug\net7.0\GgmlSharp.csproj.AssemblyReference.cache
+D:\src\gglm-sharp\src\GgmlSharp\obj\Debug\net7.0\GgmlSharp.GeneratedMSBuildEditorConfig.editorconfig
+D:\src\gglm-sharp\src\GgmlSharp\obj\Debug\net7.0\GgmlSharp.AssemblyInfoInputs.cache
+D:\src\gglm-sharp\src\GgmlSharp\obj\Debug\net7.0\GgmlSharp.AssemblyInfo.cs
+D:\src\gglm-sharp\src\GgmlSharp\obj\Debug\net7.0\GgmlSharp.csproj.CoreCompileInputs.cache
+D:\src\gglm-sharp\src\GgmlSharp\bin\Debug\net7.0\GgmlSharp.deps.json
+D:\src\gglm-sharp\src\GgmlSharp\bin\Debug\net7.0\GgmlSharp.dll
+D:\src\gglm-sharp\src\GgmlSharp\bin\Debug\net7.0\GgmlSharp.pdb
+D:\src\gglm-sharp\src\GgmlSharp\obj\Debug\net7.0\GgmlSharp.dll
+D:\src\gglm-sharp\src\GgmlSharp\obj\Debug\net7.0\refint\GgmlSharp.dll
+D:\src\gglm-sharp\src\GgmlSharp\obj\Debug\net7.0\GgmlSharp.pdb
+D:\src\gglm-sharp\src\GgmlSharp\obj\Debug\net7.0\ref\GgmlSharp.dll

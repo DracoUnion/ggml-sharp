@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- GgmlSharp: a from-scratch C# reimplementation of the GGML CPU compute runtime
+       (ggml-cpu). Targets x86-64 with AVX2/FMA + scalar fallback, mirroring the style
+       of HyMT2Sharp.Kernels. net7.0 chosen to build with the locally available SDK;
+       it can be raised later (net8+/net10). -->
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <RootNamespace>GgmlSharp</RootNamespace>
+  </PropertyGroup>
+
+</Project>
