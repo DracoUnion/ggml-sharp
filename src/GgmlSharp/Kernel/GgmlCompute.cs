@@ -57,6 +57,7 @@ public static unsafe class GgmlCompute
             case GgmlOp.MUL_MAT:        OpsMatMul.ForwardMulMat(p, dst); break;
             case GgmlOp.OUT_PROD:       OpsMatMul.ForwardOutProd(p, dst); break;
             case GgmlOp.ROPE:           OpsRope.Forward(p, dst, true); break;
+            case GgmlOp.GLU:            OpsGlu.Forward(p, dst); break;
 
             default:
                 throw new NotImplementedException($"op {dst.Op} is not yet ported (M3 covers MUL_MAT/OUT_PROD F32)");

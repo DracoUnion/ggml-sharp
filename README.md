@@ -23,13 +23,14 @@ src/GgmlSharp/               # the library
     GgmlType.cs              # enum ggml_type (42 values)
     GgmlOp.cs                # enum ggml_op (96 values)
     GgmlUnaryOp.cs           # enum ggml_unary_op (22 values)
+    GgmlGluOp.cs             # enum ggml_glu_op
     GgmlTypeTraits.cs        # per-type traits + to/from-float row codecs
     GgmlCompute.cs           # top-level forward dispatch
     ComputeParams.cs         # per-thread compute params + thread row range
     GgmlMath.cs              # fp16/bf16 conversions, erf, etc.
     GgmlDequant.cs           # dequantize (to_float) kernels for standard block types
-    GgmlGluOp.cs             # enum ggml_glu_op
-    Ops.*.cs                 # per-op kernels (Unary/Binary/MatMul/Norm/Reduce/Remap/Rope/Simple/Softmax/Upscale)
+    GgmlQuant.cs             # quantize (from_float) kernels for standard block types
+    Ops.*.cs                 # per-op kernels (Unary/Binary/MatMul/Norm/Reduce/Remap/Rope/Simple/Softmax/Upscale/Glu)
 tests/GgmlSharp.Tests/       # xUnit tests (Binary/Graph/MatMul/NormReduce/Remap/Unary)
 ```
 
@@ -107,6 +108,7 @@ op builders allocate a tensor node, wire `src`/`op_params`, and append it to the
 | `GgmlTypeTraits` | Per-type block size, type size, quantization flag, and to/from-float row functions. `Get(GgmlType)` and `Name(GgmlType)`. |
 | `GgmlMath` | fp16/bf16 ↔ fp32 conversions, `erf`, and math constants. |
 | `GgmlDequant` | Dequantize (to_float) row kernels: `Q1_0`, `Q4_0`, `Q4_1`, `Q5_0`, `Q5_1`, `Q8_0`, `Q4_K`, `Q6_K`. |
+| `GgmlQuant` | Quantize (from_float) row kernels: `Q1_0`, `Q4_0`, `Q4_1`, `Q5_0`, `Q5_1`, `Q8_0`, `Q8_1`. |
 
 #### Enums & flags (mirror GGML exactly)
 
@@ -146,7 +148,8 @@ op builders allocate a tensor node, wire `src`/`op_params`, and append it to the
 | **Remap** | `DUP`/`CPY`/`CONT`, `REPEAT`, `REPEAT_BACK`, `SET`, `PAD`, `PAD_REFLECT_1D`, `ROLL`, `ARANGE`, `FILL`, `TRI`, `ARGSORT`, `TOP_K`, `TIMESTEP_EMBEDDING`, `RMS_NORM_BACK` |
 | **Upscale** | `UPSCALE` |
 | **MatMul** | `MUL_MAT`, `OUT_PROD` |
-| **Rope** | `ROPE` (NORMAL/NEOX with YaRN) |
+| **Rope** | `ROPE` (NORMAL/NEOX/MROPE/IMROPE/VISION with YaRN) |
+| **GLU** | `GLU` (REGLU, GEGLU, SWIGLU, SWIGLU_OAI, GEGLU_ERF, GEGLU_QUICK) |
 
 Any `GgmlOp` without a kernel throws `NotImplementedException`.
 
@@ -155,9 +158,11 @@ Any `GgmlOp` without a kernel throws `NotImplementedException`.
 ## Status / roadmap
 
 - **M0** — enums, tensor/context, unary ops, binary ops, reduce, norm, softmax, simple, remap,
-  upscale, rope. Wired in `GgmlCompute.Forward`.
+  upscale, rope (NORMAL/NEOX). Wired in `GgmlCompute.Forward`.
 - **M3** — `MUL_MAT`/`OUT_PROD` for `F32`, dequantize row kernels for standard block types
   (`Q1_0`, `Q4_0`, `Q4_1`, `Q5_0`, `Q5_1`, `Q8_0`, `Q4_K`, `Q6_K`).
-- **Pending** — quantize (`from_float`) kernels, full `Q2_K`/`Q3_K`/`Q5_K`/`Q8_K`/`IQ*`/`MXFP4`/
-  `NVFP4`/`TQ*` layouts, MROPE/IMROPE/VISION rope, `GLU` and the remaining `ggml_op` cases,
+- **M4 (current)** — quantize (`from_float`) kernels for non-K types (`Q1_0`, `Q4_0`, `Q4_1`, `Q5_0`, `Q5_1`, `Q8_0`, `Q8_1`);
+  complete `TypeSize`/`BlckSize` metadata for all quant types (K-quants, IQ, MXFP4, NVFP4, TQ*);
+  MROPE/IMROPE/VISION rope variants; GLU op with all 6 variants (REGLU, GEGLU, SWIGLU, SWIGLU_OAI, GEGLU_ERF, GEGLU_QUICK).
+- **Pending** — full `from_float`/`to_float` kernels for K-quants, IQ, MXFP4, NVFP4, TQ*;
   higher target frameworks (net8+/net10).

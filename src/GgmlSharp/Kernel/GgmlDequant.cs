@@ -6,8 +6,8 @@ namespace GgmlSharp.Kernel;
 /// Dequantize (to_float) row kernels for the standard block types, ported from
 /// <c>ggml-quants.c</c>. x points at the row (nb blocks of <c>BlckSize</c>), y receives
 /// <c>k</c> floats. Fields are read by byte offset to avoid struct-packing assumptions.
-/// Covered: Q1_0, Q4_0, Q4_1, Q5_0, Q5_1, Q8_0, Q4_K, Q6_K. (Q2_K/Q3_K/Q5_K/Q8_K/IQ*/MXFP4/
-/// NVFP4/TQ* land when their exact layouts are ported.)
+/// Covered: Q1_0, Q4_0, Q4_1, Q5_0, Q5_1, Q8_0, Q4_K, Q6_K.
+/// K-quants, IQ, MXFP4, NVFP4, TQ* have TypeSize/BlckSize in TypeTraits; ToFloat/FromFloatRef stubbed here.
 /// </summary>
 public static unsafe class GgmlDequant
 {
@@ -118,6 +118,11 @@ public static unsafe class GgmlDequant
         }
     }
 
+    public static void Q8_1(byte* x, float* y, long k)
+    {
+        throw new NotImplementedException("Q8_1 dequantize not yet ported");
+    }
+
     // ---- Q4_K (block 144 B, qk 256) -----------------------------------------------
 
     public static void Q4_K(byte* x, float* y, long k)
@@ -190,4 +195,25 @@ public static unsafe class GgmlDequant
             }
         }
     }
+
+    // ---- Stubs for remaining quant types (ToFloat not yet ported) -------------------
+    // These allow TypeTraits to have non-null FromFloatRef but ToFloat throws until implemented.
+
+    public static void Q2_K(byte* x, float* y, long k) => throw new NotImplementedException("Q2_K dequantize not yet ported");
+    public static void Q3_K(byte* x, float* y, long k) => throw new NotImplementedException("Q3_K dequantize not yet ported");
+    public static void Q5_K(byte* x, float* y, long k) => throw new NotImplementedException("Q5_K dequantize not yet ported");
+    public static void Q8_K(byte* x, float* y, long k) => throw new NotImplementedException("Q8_K dequantize not yet ported");
+    public static void TQ1_0(byte* x, float* y, long k) => throw new NotImplementedException("TQ1_0 dequantize not yet ported");
+    public static void TQ2_0(byte* x, float* y, long k) => throw new NotImplementedException("TQ2_0 dequantize not yet ported");
+    public static void IQ2_XXS(byte* x, float* y, long k) => throw new NotImplementedException("IQ2_XXS dequantize not yet ported");
+    public static void IQ2_XS(byte* x, float* y, long k) => throw new NotImplementedException("IQ2_XS dequantize not yet ported");
+    public static void IQ3_XXS(byte* x, float* y, long k) => throw new NotImplementedException("IQ3_XXS dequantize not yet ported");
+    public static void IQ1_S(byte* x, float* y, long k) => throw new NotImplementedException("IQ1_S dequantize not yet ported");
+    public static void IQ4_NL(byte* x, float* y, long k) => throw new NotImplementedException("IQ4_NL dequantize not yet ported");
+    public static void IQ3_S(byte* x, float* y, long k) => throw new NotImplementedException("IQ3_S dequantize not yet ported");
+    public static void IQ2_S(byte* x, float* y, long k) => throw new NotImplementedException("IQ2_S dequantize not yet ported");
+    public static void IQ4_XS(byte* x, float* y, long k) => throw new NotImplementedException("IQ4_XS dequantize not yet ported");
+    public static void IQ1_M(byte* x, float* y, long k) => throw new NotImplementedException("IQ1_M dequantize not yet ported");
+    public static void MXFP4(byte* x, float* y, long k) => throw new NotImplementedException("MXFP4 dequantize not yet ported");
+    public static void NVFP4(byte* x, float* y, long k) => throw new NotImplementedException("NVFP4 dequantize not yet ported");
 }
